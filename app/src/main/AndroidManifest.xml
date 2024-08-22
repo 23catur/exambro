@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="id.sch.smkn2cikbar.exambrowser">
+
+<!--    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<!--    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/mbd"
+        android:label="SMA NEGERI 19 MBD"
+        android:resizeableActivity="false"
+        android:roundIcon="@drawable/mbd"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+<!--        <activity-->
+<!--            android:name=".LockDevice"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+        <activity android:name=".Login"/>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:lockTaskMode="if_whitelisted"
+            tools:targetApi="m" />
+
+        <meta-data
+            android:name="android.s192upport.VERSION"
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
+
+<!--        <receiver-->
+<!--            android:name=".LDAdmin"-->
+<!--            android:exported="true"-->
+<!--            android:permission="android.permission.BIND_DEVICE_ADMIN">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.device_admin"-->
+<!--                android:resource="@xml/device_policies" />-->
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <receiver
+            android:name=".AppAdminReceiver"
+            android:description="@string/app_name"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_receiver" />
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_ADMIN_ENABLED"/>
+                <action android:name="android.intent.action.PROFILE_PROVISIONING_COMPLETE"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
